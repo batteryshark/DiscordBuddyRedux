@@ -44,6 +44,13 @@ discord_gateway_baseurl=wss://gateway.discord.gg
 
 This file allows a user to bypass discordbuddy and resume using the normal discord_game_sdk dll. It also allows a user to specify another discord server API version or gateway endpoint for future development.
 
+### WINE Notes
+
+In order to use this with WINE/Proton, you need to have your launch options on steam set to:
+WINEDLLOVERRIDES='winmm.dll=n,b' %command%
+
+or just use the WINEDLLOVERRIDES prefix for regular WINE.
+
 
 
 
