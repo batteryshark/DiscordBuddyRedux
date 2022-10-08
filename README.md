@@ -9,6 +9,8 @@ As a result, some components are not functional:
 - Guild Stuff
 - Voice Chat
 
+** NOTE ** You probably need VS2022's redistributable for this to work: [https://aka.ms/vs/17/release/vc_redist.x86.exe]
+
 
 ### Component Based Breakdown
 
