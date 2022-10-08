@@ -25,6 +25,7 @@ Other than that, the operation of this library is fairly straightforward:
 - A discordbuddy.ini file will be created on first run if not available:
 
 """
+
 [GLOBAL]
 
 buddy_bypass=0
