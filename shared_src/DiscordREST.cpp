@@ -269,8 +269,8 @@ int GetDiscordToken(char* discord_token) {
             printf("Error on Discord TOTP Request\n");
             return 0;
         }
-
-        if (!cJSON_GetObjectItemCaseSensitive(login_response, "token")) {
+    
+        if (!cJSON_GetObjectItemCaseSensitive(totp_response, "token")) {
             printf("Error Validating 2FA Code: Probably Invalid Code.\n");
             return 0;
         }
