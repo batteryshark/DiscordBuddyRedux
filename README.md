@@ -44,7 +44,7 @@ This file allows a user to bypass discordbuddy and resume using the normal disco
 ### WINE Notes
 
 In order to use this with WINE/Proton, you need to have your launch options on steam set to:
-WINEDLLOVERRIDES='winmm.dll=n,b' %command%
+WINEDLLOVERRIDES='ktmw32.dll=n,b' %command%
 
 or just use the WINEDLLOVERRIDES prefix for regular WINE.
 
