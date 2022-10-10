@@ -115,9 +115,9 @@ void DiscordGateway::ProcessDispatchPacket(cJSON* packet) {
 	if (cJSON_GetObjectItemCaseSensitive(packet, "t")) {
 		if (!strcmp(cJSON_GetObjectItemCaseSensitive(packet, "t")->valuestring, "READY")) {
 		}
-		DBG_printf("[GatewayProtocol] Dispatch: %s\n", cJSON_GetObjectItemCaseSensitive(packet, "t")->valuestring);
+	//	DBG_printf("[GatewayProtocol] Dispatch: %s\n", cJSON_GetObjectItemCaseSensitive(packet, "t")->valuestring);
 	}
-	DBG_printf(cJSON_PrintUnformatted(packet));
+	//DBG_printf(cJSON_PrintUnformatted(packet));
 }
 
 // 7 Reconnect Receive You should attempt to reconnect and resume immediately.
@@ -147,14 +147,14 @@ void DiscordGateway::ProcessHeartbeatAckPacket(cJSON* packet) {
 
 void DiscordGateway::SendClearActivity() {
 	cJSON* clp = CreateClearActivityPacket();
-	DBG_printf(cJSON_PrintUnformatted(clp));
+	//DBG_printf(cJSON_PrintUnformatted(clp));
 	this->SendPacket(clp);
 	//cJSON_Delete(clp);
 }
 
 void DiscordGateway::SetActivity(const char* name, const char* state, const char* details, unsigned long long app_id, const char* large_image, const char* large_text) {
 	cJSON* sap = CreateActivityPacket(name, state, details, app_id, large_image, large_text);
-	DBG_printf(cJSON_PrintUnformatted(sap));
+	//DBG_printf(cJSON_PrintUnformatted(sap));
 	this->SendPacket(sap);
 	//cJSON_Delete(sap);
 }
