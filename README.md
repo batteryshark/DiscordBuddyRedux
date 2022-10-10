@@ -9,6 +9,8 @@ As a result, some components are not functional:
 - Guild Stuff
 - Voice Chat
 
+** NOTE ** You probably need VS2022's redistributable for this to work: [https://aka.ms/vs/17/release/vc_redist.x86.exe]
+
 
 ### Component Based Breakdown
 
@@ -16,7 +18,7 @@ Most Discord commands (save the richpresence activity update) are REST based. As
 
 Other than that, the operation of this library is fairly straightforward:
 
-- Use "GenerateDiscordToken.exe" to log into Discord and save an auth token to your current directory (change it somewhere else if you want). If you don't want to go this route, feel free to pull a Discord auth token yourself from the browser or your AppData folder.
+- Use "GenerateDiscordToken.exe" to log into Discord and save an auth token to your current directory (".dbtoken" by default) - change it somewhere else if you want. If you don't want to go this route, feel free to pull a Discord auth token yourself from the browser or your AppData folder.
 
 - Place "winmm.dll" and "discordbuddy.dll" into your game directory. 
 
@@ -25,16 +27,29 @@ Other than that, the operation of this library is fairly straightforward:
 - A discordbuddy.ini file will be created on first run if not available:
 
 """
+
 [GLOBAL]
+
 buddy_bypass=0
 
 [DISCORD_API]
+
 discord_api_version=9
+
 discord_api_baseurl=https://discord.com/api/v9
+
 discord_gateway_baseurl=wss://gateway.discord.gg
+
 """
 
 This file allows a user to bypass discordbuddy and resume using the normal discord_game_sdk dll. It also allows a user to specify another discord server API version or gateway endpoint for future development.
+
+### WINE Notes
+
+In order to use this with WINE/Proton, you need to have your launch options on steam set to:
+WINEDLLOVERRIDES='winmm.dll=n,b' %command%
+
+or just use the WINEDLLOVERRIDES prefix for regular WINE.
 
 
 
