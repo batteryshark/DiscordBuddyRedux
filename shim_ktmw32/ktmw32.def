@@ -1,0 +1,5 @@
+LIBRARY ktmw32.dll
+
+EXPORTS
+    CommitTransaction                     = fake_CommitTransaction
+    CreateTransaction                     = fake_CreateTransaction

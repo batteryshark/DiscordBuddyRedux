@@ -15,25 +15,37 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="discordbuddy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cJSON.c">
+    <ClCompile Include="discordbudy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DiscordHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\shared_src\cJSON.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\shared_src\DBUtil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\shared_src\DiscordREST.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\shared_src\DiscordGateway.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\shared_src\WsClientLib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cJSON.h">
+    <ClInclude Include="discord_game_sdk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DiscordHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="discord_game_sdk.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\shared_src\WsClientLib.hpp">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

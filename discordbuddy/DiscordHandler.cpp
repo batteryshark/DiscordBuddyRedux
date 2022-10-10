@@ -159,13 +159,13 @@ int DiscordHandler::InitCurrentUser() {
 
 void DiscordHandler::SetApplicationInfo(unsigned long long client_id) {
 	this->SetApplicationId(client_id);
-	
+
 	// For the Real Deal, We Need More Stuff
 	cJSON* asset_response;
 	char url_asset_info[128] = { 0x00 };
 	char url_app_info[128] = { 0x00 };
 
-	GetURLAssetInfo(url_asset_info,this->_application_id);
+	GetURLAssetInfo(url_asset_info, this->_application_id);
 	GetURLAppInfo(url_app_info, this->_application_id);
 
 	GetAppAssets(url_asset_info, this->_application_id, this->_token, &asset_response);
@@ -245,14 +245,13 @@ void DiscordHandler::SetActivity(struct DiscordActivity* activity) {
 
 
 void InitDiscordHandler(DiscordHandler** handler) {
-	char* config_data = NULL;
-	cJSON* config;
+
 	DiscordHandler* h = new DiscordHandler();
 	*handler = h;
 
 
 	// If bypass is enabled, there's nothing for us to do.
-	h->SetBypassMode(GetBypassEnabled());
+	h->SetBypassMode(!IsBuddyEnabled());
 	if (h->IsBypassMode()) { return; }
 
 	// Get our Cached Token - Error and Bypass if not found or invalid.

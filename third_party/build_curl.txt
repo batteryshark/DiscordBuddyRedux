@@ -1,0 +1,16 @@
+git clone https://github.com/curl/curl.git
+
+buildconf.bat
+cd winbuild
+
+
+In order to built cURL with respect to /MT and /MTD you have to also execute Set RTLIBCFG=static before actually building it with the nmake command in the very same console. Full process of building cURL this way can be found here.
+
+Edit: In case the URL stops working, I will also put the instructions here:
+
+Download and extract the CUrl source code to a temp directory. http://curl.haxx.se/download.html, in this tutorial we will be using curl-7.37.0
+Open the “Visual Studio Command Prompt (2010)”
+Browse to the Winbuilds folder. \curl-7.37.0\winbuild.
+Type Set RTLIBCFG=static into the command prompt and hit enter. This will set up the compiler to build for /MT and /MTd.
+Type nmake /f MakeFile.vc mode=static DEBUG=yes to build the debug version or
+Type nmake /f MakeFile.vc mode=static DEBUG=no to build the release versions.

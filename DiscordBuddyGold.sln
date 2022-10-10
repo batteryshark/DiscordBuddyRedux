@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shim_ktmw32", "shim_ktmw32\shim_ktmw32.vcxproj", "{B8D76542-921A-4F9F-B9E6-18A70F5EAE2B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shims", "shims", "{DD978050-18DF-4F06-8D70-52AE76D7688D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shim_winmm", "shim_winmm\shim_winmm.vcxproj", "{31CB0598-C189-4402-8129-E539D040D940}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GenerateDiscordToken", "GenerateDiscordToken\GenerateDiscordToken.vcxproj", "{634B024A-D729-4897-9B2C-26ECB7B51B48}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "discordbuddy", "discordbuddy\discordbuddy.vcxproj", "{EA65586B-C4A3-49C1-9ED2-C6A918FA716E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8D76542-921A-4F9F-B9E6-18A70F5EAE2B}.Debug|x64.ActiveCfg = Debug|x64
+		{B8D76542-921A-4F9F-B9E6-18A70F5EAE2B}.Debug|x64.Build.0 = Debug|x64
+		{B8D76542-921A-4F9F-B9E6-18A70F5EAE2B}.Debug|x86.ActiveCfg = Debug|Win32
+		{B8D76542-921A-4F9F-B9E6-18A70F5EAE2B}.Debug|x86.Build.0 = Debug|Win32
+		{B8D76542-921A-4F9F-B9E6-18A70F5EAE2B}.Release|x64.ActiveCfg = Release|x64
+		{B8D76542-921A-4F9F-B9E6-18A70F5EAE2B}.Release|x64.Build.0 = Release|x64
+		{B8D76542-921A-4F9F-B9E6-18A70F5EAE2B}.Release|x86.ActiveCfg = Release|Win32
+		{B8D76542-921A-4F9F-B9E6-18A70F5EAE2B}.Release|x86.Build.0 = Release|Win32
+		{31CB0598-C189-4402-8129-E539D040D940}.Debug|x64.ActiveCfg = Debug|x64
+		{31CB0598-C189-4402-8129-E539D040D940}.Debug|x64.Build.0 = Debug|x64
+		{31CB0598-C189-4402-8129-E539D040D940}.Debug|x86.ActiveCfg = Debug|Win32
+		{31CB0598-C189-4402-8129-E539D040D940}.Debug|x86.Build.0 = Debug|Win32
+		{31CB0598-C189-4402-8129-E539D040D940}.Release|x64.ActiveCfg = Release|x64
+		{31CB0598-C189-4402-8129-E539D040D940}.Release|x64.Build.0 = Release|x64
+		{31CB0598-C189-4402-8129-E539D040D940}.Release|x86.ActiveCfg = Release|Win32
+		{31CB0598-C189-4402-8129-E539D040D940}.Release|x86.Build.0 = Release|Win32
+		{634B024A-D729-4897-9B2C-26ECB7B51B48}.Debug|x64.ActiveCfg = Debug|x64
+		{634B024A-D729-4897-9B2C-26ECB7B51B48}.Debug|x64.Build.0 = Debug|x64
+		{634B024A-D729-4897-9B2C-26ECB7B51B48}.Debug|x86.ActiveCfg = Debug|Win32
+		{634B024A-D729-4897-9B2C-26ECB7B51B48}.Debug|x86.Build.0 = Debug|Win32
+		{634B024A-D729-4897-9B2C-26ECB7B51B48}.Release|x64.ActiveCfg = Release|x64
+		{634B024A-D729-4897-9B2C-26ECB7B51B48}.Release|x64.Build.0 = Release|x64
+		{634B024A-D729-4897-9B2C-26ECB7B51B48}.Release|x86.ActiveCfg = Release|Win32
+		{634B024A-D729-4897-9B2C-26ECB7B51B48}.Release|x86.Build.0 = Release|Win32
+		{EA65586B-C4A3-49C1-9ED2-C6A918FA716E}.Debug|x64.ActiveCfg = Debug|x64
+		{EA65586B-C4A3-49C1-9ED2-C6A918FA716E}.Debug|x64.Build.0 = Debug|x64
+		{EA65586B-C4A3-49C1-9ED2-C6A918FA716E}.Debug|x86.ActiveCfg = Debug|Win32
+		{EA65586B-C4A3-49C1-9ED2-C6A918FA716E}.Debug|x86.Build.0 = Debug|Win32
+		{EA65586B-C4A3-49C1-9ED2-C6A918FA716E}.Release|x64.ActiveCfg = Release|x64
+		{EA65586B-C4A3-49C1-9ED2-C6A918FA716E}.Release|x64.Build.0 = Release|x64
+		{EA65586B-C4A3-49C1-9ED2-C6A918FA716E}.Release|x86.ActiveCfg = Release|Win32
+		{EA65586B-C4A3-49C1-9ED2-C6A918FA716E}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B8D76542-921A-4F9F-B9E6-18A70F5EAE2B} = {DD978050-18DF-4F06-8D70-52AE76D7688D}
+		{31CB0598-C189-4402-8129-E539D040D940} = {DD978050-18DF-4F06-8D70-52AE76D7688D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {841A8FD8-8A5A-4CD2-BA00-81EC6BE0C485}
+	EndGlobalSection
+EndGlobal
