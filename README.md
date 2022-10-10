@@ -9,9 +9,6 @@ As a result, some components are not functional:
 - Guild Stuff
 - Voice Chat
 
-** NOTE ** You probably need VS2022's redistributable for this to work: [https://aka.ms/vs/17/release/vc_redist.x86.exe]
-
-
 ### Component Based Breakdown
 
 Most Discord commands (save the richpresence activity update) are REST based. As a result, this uses libcurl to talk to Discord's APIs directly. For richpresence, this uses WsClientLib [https://github.com/rottor12/WsClientLib] and subsequently mBedTLS 2.16 because we need a TLS WebSocket to talk to Discord's gateway service.
@@ -20,9 +17,9 @@ Other than that, the operation of this library is fairly straightforward:
 
 - Use "GenerateDiscordToken.exe" to log into Discord and save an auth token to your current directory (".dbtoken" by default) - change it somewhere else if you want. If you don't want to go this route, feel free to pull a Discord auth token yourself from the browser or your AppData folder.
 
-- Place "winmm.dll" and "discordbuddy.dll" into your game directory. 
+- Place "ktmw32.dll" and "discordbuddy.dll" into your game directory. 
 
-- As long as the game calls winmm.dll, the winmm shim will replace the "DiscordCreate" import from the traditionally assigned discord_game_sdk.dll to the discordbudy.dll version.
+- The ktmw32 shim will replace the "DiscordCreate" import from the traditionally assigned discord_game_sdk.dll to the discordbudy.dll version.
 
 - A discordbuddy.ini file will be created on first run if not available:
 
@@ -30,7 +27,7 @@ Other than that, the operation of this library is fairly straightforward:
 
 [GLOBAL]
 
-buddy_bypass=0
+buddy_enabled=1
 
 [DISCORD_API]
 
