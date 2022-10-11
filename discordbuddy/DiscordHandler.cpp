@@ -8,6 +8,7 @@
 #include "DiscordHandler.h"
 
 
+
 // Static Defines
 static DiscordGateway* gateway = nullptr;
 
@@ -218,7 +219,9 @@ void DiscordHandler::Fake_ClearActivity() {
 
 void DiscordHandler::ClearActivity() {
 	ZeroMemory(&this->_activity, sizeof(DiscordActivity));
-	gateway->SendClearActivity();
+	if (gateway) {
+		gateway->SendClearActivity();
+	}
 }
 
 // Maps the asset table to the appropriate id
@@ -242,7 +245,9 @@ void DiscordHandler::SetActivity(struct DiscordActivity* activity) {
 	this->MapIdToAsset(this->_activity.assets.large_text, this->_activity.assets.large_image);
 	strcpy_s(this->_activity.name, sizeof(this->_activity.name), this->_application_name);
 	this->PrintCurrentActivity();
-	gateway->SetActivity(this->_activity.name, this->_activity.state, this->_activity.details, this->_activity.application_id, this->_activity.assets.large_image, this->_activity.assets.large_text);
+	if (gateway) {
+		gateway->SetActivity(this->_activity.name, this->_activity.state, this->_activity.details, this->_activity.application_id, this->_activity.assets.large_image, this->_activity.assets.large_text);
+	}
 }
 
 
@@ -263,20 +268,24 @@ void InitDiscordHandler(DiscordHandler** handler) {
 	GetCachedToken(token);
 	if (!strlen(token)) {
 		h->SetBypassMode(1);
-		OutputDebugStringA("[DiscordBuddy] Discord Token Not Found - Please generate token with utility.");
+		MessageBoxA(NULL,"[DiscordBuddy] Discord Token Not Found - Please generate token with utility. Bypass Mode Active.","DiscordBuddy Error", MB_ICONERROR | MB_OK);
 		return;
 	}
-	// Set up Our WebSocket Gateway
-	char websocket_gateway_url[128] = { 0x00 };
-	GetGatewayBaseURL(websocket_gateway_url);
-	gateway = new DiscordGateway(websocket_gateway_url, token, &HeartBeatThread, &GatewayThread);
-	gateway->Start();
 	h->SetToken(token);
+	// Set up Our WebSocket Gateway
+	if (IsRPEnabled()) {
+		char websocket_gateway_url[128] = { 0x00 };
+		GetGatewayBaseURL(websocket_gateway_url);
+		gateway = new DiscordGateway(websocket_gateway_url, token, &HeartBeatThread, &GatewayThread);
+		gateway->Start();
+	}
+	
+
 	ZeroMemory(token, sizeof(token));
 	// Get Real User Data with our Token
 	if (!h->InitCurrentUser()) {
 		h->SetBypassMode(1);
-		OutputDebugStringA("[DiscordBuddy] Discord Token Not Valid - Please generate token with utility.");
+		MessageBoxA(NULL, "[DiscordBuddy] Could not get User info from Discord Server - Maybe invalid token. Bypass Mode Active.", "DiscordBuddy Error", MB_ICONERROR | MB_OK);
 		return;
 	}
 }

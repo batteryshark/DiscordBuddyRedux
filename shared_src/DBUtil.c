@@ -48,6 +48,7 @@ void CheckAndCreateINI() {
     fp = fopen(ini_path, "w");
     fputs("[GLOBAL]\n", fp);
     fputs("buddy_enabled=1\n", fp);
+    fputs("rp_enabled=1\n", fp);
     fputs("discord_token=\n", fp);
     fputs("\n", fp);
     fputs("[DISCORD_API]\n", fp);
@@ -106,6 +107,13 @@ int IsBuddyEnabled() {
     CheckAndCreateINI();
     int res = GetPrivateProfileIntA("GLOBAL", "buddy_enabled", 0, ini_path);
     DBG_printf("IsBuddyEnabled: %d\n", res);
+    return res;
+}
+
+int IsRPEnabled() {
+    CheckAndCreateINI();
+    int res = GetPrivateProfileIntA("GLOBAL", "rp_enabled", 0, ini_path);
+    DBG_printf("RPEnabled: %d\n", res);
     return res;
 }
 
