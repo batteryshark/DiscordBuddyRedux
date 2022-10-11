@@ -62,7 +62,7 @@ static void HandleReceivedMessage(const std::string& message, void* pUserData) {
 
 // Periodically Sends a Heartbeat at the Discretion of the Server
 static void HeartBeatThread() {
-	while (!gateway) {}
+	while (gateway==nullptr) {}
 	while (gateway->IsRunning()) {
 		while (!gateway->GetHeartbeat()) {}
 		Sleep(gateway->GetHeartbeat());
@@ -99,7 +99,7 @@ DiscordHandler::~DiscordHandler() {
 	CurlShutdown();
 	this->ClearActivity();
 	this->_running = 0;
-	if (gateway) {
+	if (gateway != nullptr) {
 		delete gateway;
 	}
 }
@@ -219,9 +219,7 @@ void DiscordHandler::Fake_ClearActivity() {
 
 void DiscordHandler::ClearActivity() {
 	ZeroMemory(&this->_activity, sizeof(DiscordActivity));
-	if (gateway) {
-		gateway->SendClearActivity();
-	}
+	gateway->SendClearActivity();
 }
 
 // Maps the asset table to the appropriate id
@@ -245,9 +243,7 @@ void DiscordHandler::SetActivity(struct DiscordActivity* activity) {
 	this->MapIdToAsset(this->_activity.assets.large_text, this->_activity.assets.large_image);
 	strcpy_s(this->_activity.name, sizeof(this->_activity.name), this->_application_name);
 	this->PrintCurrentActivity();
-	if (gateway) {
-		gateway->SetActivity(this->_activity.name, this->_activity.state, this->_activity.details, this->_activity.application_id, this->_activity.assets.large_image, this->_activity.assets.large_text);
-	}
+	gateway->SetActivity(this->_activity.name, this->_activity.state, this->_activity.details, this->_activity.application_id, this->_activity.assets.large_image, this->_activity.assets.large_text);
 }
 
 
@@ -273,10 +269,11 @@ void InitDiscordHandler(DiscordHandler** handler) {
 	}
 	h->SetToken(token);
 	// Set up Our WebSocket Gateway
+	char websocket_gateway_url[128] = { 0x00 };
+	GetGatewayBaseURL(websocket_gateway_url);
+	gateway = new DiscordGateway(websocket_gateway_url, token, &HeartBeatThread, &GatewayThread);
+	
 	if (IsRPEnabled()) {
-		char websocket_gateway_url[128] = { 0x00 };
-		GetGatewayBaseURL(websocket_gateway_url);
-		gateway = new DiscordGateway(websocket_gateway_url, token, &HeartBeatThread, &GatewayThread);
 		gateway->Start();
 	}
 	
