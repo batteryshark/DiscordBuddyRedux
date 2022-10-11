@@ -89,6 +89,7 @@ enum EDiscordResult GetCurrentUser(struct IDiscordUserManager* manager, struct D
 void GetOAuth2Token(struct IDiscordApplicationManager* manager, void* callback_data, void (*callback)(void* callback_data, enum EDiscordResult result, struct DiscordOAuth2Token* oauth2_token)) {
 
     DiscordOAuth2Token tok;
+    memset(tok.access_token, 0x00,sizeof(tok.access_token));
     discord_handler->GetAppToken(tok.access_token);
     tok.expires = 0;
     strcpy(tok.scopes, "identify");

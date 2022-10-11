@@ -202,12 +202,12 @@ int GetAppIDToken(unsigned long long app_id, char* discord_token, char* app_toke
             return 0; 
         }
         at_start += strlen("access_token=");
-
-        const char* at_end = strstr(at_start, "&");
+        //DBG_printf("Token Response: %s", res_location);
+        const char* at_end = strstr(at_start, "&expires");
         size_t tok_len = at_end - at_start;
 
         memcpy(app_token, at_start, tok_len);
-
+      //  DBG_printf("Token: %s\n", app_token);
         return 1;
     }
     return 0;

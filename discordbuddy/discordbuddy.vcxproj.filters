@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="discordbudy.cpp">
+    <ClCompile Include="discordbuddy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DiscordHandler.cpp">

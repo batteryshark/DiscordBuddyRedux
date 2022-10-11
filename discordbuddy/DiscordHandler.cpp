@@ -14,10 +14,13 @@ static DiscordGateway* gateway = nullptr;
 static void HandleError(const WsClientLib::WSError& err, void* pUserData) {
 	// Will also be thrown when closed, so...
 	DBG_printf("[DiscordGateway] Websockets Error: %s [%d]\n", err.message.c_str(), err.code);
+	MessageBoxA(NULL, "DiscordBuddy Error: Websocket Error - Likely Invalid Discord Token", "DiscordBuddy", MB_ICONERROR | MB_OK);
+	exit(-1);
 }
 
 static void HandleReceivedMessage(const std::string& message, void* pUserData) {
 	if (message.empty()) { return; }
+
 	cJSON* msg = cJSON_Parse(message.c_str());
 	if (cJSON_GetObjectItemCaseSensitive(msg, "op")) {
 		int op = cJSON_GetObjectItemCaseSensitive(msg, "op")->valueint;
@@ -75,7 +78,8 @@ static void GatewayThread() {
 			if (!gateway->IsRunning()) { return; }
 			gateway->Transact(HandleError, HandleReceivedMessage);
 		}
-		DBG_printf("Gateway Disconnected.");
+		MessageBoxA(NULL, "DiscordBuddy Error: Probably Invalid Discord Token", "RPC Gateway Closed Due to an Error", MB_ICONERROR | MB_OK);
+		exit(-1);
 		Sleep(1000);
 	}
 }
