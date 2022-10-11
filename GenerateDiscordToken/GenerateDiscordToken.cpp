@@ -13,6 +13,6 @@ int main() {
         return -1;
     }
     SaveToken(discord_token);
-    printf("Token Saved Successfully to: %s!\n", CACHED_TOKEN_PATH);
+    printf("Token Saved Successfully to: %s!\n", INI_FILENAME);
     system("pause");
 }

@@ -134,7 +134,8 @@ int GetUserInfo(const char* user_info_url, const char* token, cJSON** info_respo
     int res = HTTPSGetJSON(user_info_url, auth_header, info_response);
     memset(auth_header, 0, sizeof(auth_header));
     if (!res) {
-        OutputDebugStringA("[DiscordBuddy] REST Error: GetUserInfo");
+        MessageBoxA(NULL, "DiscordBuddy Error: GetUserInfo", "Error Getting User Info", MB_ICONERROR | MB_OK);
+        exit(-1);
         return 0;
     }
     return 1;
@@ -148,7 +149,8 @@ int GetAppInfo(const char* app_info_url, unsigned long long application_id, cons
     int res = HTTPSGetJSON(url, auth_header, info_response);
     memset(auth_header, 0, sizeof(auth_header));
     if (!res) {
-        OutputDebugStringA("[DiscordBuddy] REST Error: GetAppInfo");
+        MessageBoxA(NULL, "DiscordBuddy Error: GetAppInfo", "Error Getting App Info", MB_ICONERROR | MB_OK);
+        exit(-1);
         return 0;
     }
     return 1;
@@ -162,7 +164,8 @@ int GetAppAssets(const char* assets_info_url, unsigned long long application_id,
     int res = HTTPSGetJSON(url, auth_header, info_response);
     memset(auth_header, 0, sizeof(auth_header));
     if (!res) {
-        DBG_printf("[DiscordBuddy] REST Error: GetAppAssets");
+        MessageBoxA(NULL, "DiscordBuddy Error: GetAppAssets", "Error on Discord App Asset Request", MB_ICONERROR | MB_OK);
+        exit(-1);
         return 0;
     }
 
@@ -182,17 +185,22 @@ int GetAppIDToken(unsigned long long app_id, char* discord_token, char* app_toke
 
     cJSON_Delete(token_request);
     if (!res) {
-        DBG_printf("Error on Discord App Token Request\n");
+        MessageBoxA(NULL, "DiscordBuddy Error: Get AppIDToken", "Error on Discord App Token Request", MB_ICONERROR | MB_OK);
+        exit(-1);
         return 0;
     }
 
     char res_location[1024] = { 0x00 };
-    // If the token is located here, we're done... also this means 2FA isn't enabled.
+
     if (cJSON_GetObjectItemCaseSensitive(token_response, "location")->valuestring) {
         strcpy_s(res_location, sizeof(res_location), cJSON_GetObjectItemCaseSensitive(token_response, "location")->valuestring);
 
         const char* at_start = strstr(res_location, "access_token=");
-        if (!at_start) { return 0; }
+        if (!at_start) { 
+            MessageBoxA(NULL, "DiscordBuddy Error: Get AppIDToken", "No Access Token given in Response", MB_ICONERROR | MB_OK);
+            exit(-1);
+            return 0; 
+        }
         at_start += strlen("access_token=");
 
         const char* at_end = strstr(at_start, "&");

@@ -104,7 +104,8 @@ void DiscordGateway::SendIdentify() {
 
 // 0 Dispatch Receive An event was dispatched.
 void DiscordGateway::ProcessDispatchPacket(cJSON* packet) {
-
+	//OutputDebugStringA("Process Dispatch Patcket");
+	//OutputDebugStringA(cJSON_Print(packet));
 	if (cJSON_GetObjectItemCaseSensitive(packet, "s")) {
 		this->_last_seq = cJSON_GetObjectItemCaseSensitive(packet, "s")->valueint;
 	}
@@ -142,7 +143,7 @@ void DiscordGateway::ProcessHelloPacket(cJSON* packet) {
 // 11 Heartbeat ACK Receive Sent in response to receiving a heartbeat to acknowledge that it has been received.
 void DiscordGateway::ProcessHeartbeatAckPacket(cJSON* packet) {
 	DBG_printf("[GatewayProtocol] Heartbeat ACK:\n");
-	DBG_printf(cJSON_Print(packet));
+	//DBG_printf(cJSON_Print(packet));
 }
 
 void DiscordGateway::SendClearActivity() {

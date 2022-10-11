@@ -11,7 +11,6 @@ extern "C" {
 
 
 void DBG_printf(const char* format, ...);
-BOOL LoadTextData(const char* path, char** buffer);
 void DBG_print_buffer(unsigned char* data, size_t size);
 void GetCachedToken(char* discord_token);
 void SaveToken(const char* discord_token);

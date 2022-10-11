@@ -31,34 +31,6 @@ void DBG_print_buffer(unsigned char* data, size_t size) {
 
 }
 
-// Generic, load a text file stuff.
-BOOL LoadTextData(const char* path, char** buffer) {
-    FILE* fp = NULL;
-    fopen_s(&fp, path, "r");
-    if (!fp) { return FALSE; }
-
-    fseek(fp, 0L, SEEK_END);
-    size_t length = ftell(fp);
-    rewind(fp);
-    *buffer = (char*)malloc(length);
-    if (!*buffer) { return FALSE; }
-    fread(*buffer, length, 1, fp);
-    fclose(fp);
-    return TRUE;
-}
-
-void GetCachedToken(char* discord_token) {
-    char token_path[1024] = { 0x00 };
-    FILE* fp = fopen(CACHED_TOKEN_PATH, "rb");
-    fgets(discord_token, 128, fp);
-    fclose(fp);
-}
-
-void SaveToken(const char* discord_token) {
-    FILE* fp = fopen(CACHED_TOKEN_PATH, "wb");
-    fputs(discord_token, fp);
-    fclose(fp);
-}
 
 
 
@@ -76,6 +48,7 @@ void CheckAndCreateINI() {
     fp = fopen(ini_path, "w");
     fputs("[GLOBAL]\n", fp);
     fputs("buddy_enabled=1\n", fp);
+    fputs("discord_token=\n", fp);
     fputs("\n", fp);
     fputs("[DISCORD_API]\n", fp);
     fputs("discord_api_version=9\n", fp);
@@ -84,6 +57,21 @@ void CheckAndCreateINI() {
     fputs("\n", fp);
     fclose(fp);
 }
+
+void GetCachedToken(char* discord_token) {
+    CheckAndCreateINI();
+    GetPrivateProfileStringA("GLOBAL", "discord_token", NULL, discord_token, 128, ini_path);
+    if (discord_token == NULL) {
+        MessageBoxA(NULL, "No Discord Token", "Error: Discord Token Not found in discordbuddy.ini", MB_ICONERROR | MB_OK);
+        exit(-1);
+    }
+}
+
+void SaveToken(const char* discord_token) {
+    CheckAndCreateINI();
+    WritePrivateProfileStringA("GLOBAL", "discord_token", discord_token, ini_path);
+}
+
 
 void GetAPIBaseURL(char* base_url) {
     CheckAndCreateINI();
