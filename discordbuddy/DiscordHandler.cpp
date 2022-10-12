@@ -15,8 +15,8 @@ static DiscordGateway* gateway = nullptr;
 static void HandleError(const WsClientLib::WSError& err, void* pUserData) {
 	// Will also be thrown when closed, so...
 	DBG_printf("[DiscordGateway] Websockets Error: %s [%d]\n", err.message.c_str(), err.code);
-	MessageBoxA(NULL, "DiscordBuddy Error: Websocket Error - Likely Invalid Discord Token", "DiscordBuddy", MB_ICONERROR | MB_OK);
-	exit(-1);
+//	MessageBoxA(NULL, "DiscordBuddy Error: Websocket Error - Likely Invalid Discord Token", "DiscordBuddy", MB_ICONERROR | MB_OK);
+//	exit(-1);
 }
 
 static void HandleReceivedMessage(const std::string& message, void* pUserData) {
