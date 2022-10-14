@@ -79,8 +79,7 @@ static void GatewayThread() {
 			if (!gateway->IsRunning()) { return; }
 			gateway->Transact(HandleError, HandleReceivedMessage);
 		}
-		MessageBoxA(NULL, "DiscordBuddy Error: Probably Invalid Discord Token", "RPC Gateway Closed Due to an Error", MB_ICONERROR | MB_OK);
-		exit(-1);
+		
 		Sleep(1000);
 	}
 }
